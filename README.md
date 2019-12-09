@@ -61,7 +61,13 @@ update customers set postalcode = 11122 where contactname = 'Bilbo Baggins'
 The following exercises **require research**, the concepts needed to complete them have not been covered in class yet.
 
 - Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted. Should be 69.
+
+SELECT count(distinct city) FROM Customers;
+
 - Find all suppliers who have names longer than 20 characters. Returns 11 records.
+
+SELECT \* from suppliers where LEN(SupplierName) > 20;
+
 - Add a `query string` option to your `GET /api/accounts` endpoint. The `query string` may contain `limit`, `sortby` and `sortdir` keys. If these keys are provided, use these values to limit and sort the `accounts` which are selected from the database. Reference the docs for sorting and limiting in `knex`.
 
 ```js
