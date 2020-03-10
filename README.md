@@ -18,11 +18,28 @@ For this lab you will:
 Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top) using the **Google Chrome (or Chromium if you use Linux) browser** and write _SQL queries_ for the following requirements:
 
 - find all customers with postal code 1010. Returns 3 records.
+
+select \* from customers where postalcode = 1010
+
 - find the phone number for the supplier with the id 11. Should be (010) 9984510.
+
+select phone from suppliers where supplierid = 11;
+
 - list first 10 orders placed, sorted descending by the order date. The order with date 1997-02-12 should be at the top.
+
+select \* from orders order by orderdate desc limit 10
+
 - find all customers that live in London, Madrid, or Brazil. Returns 18 records.
+
+select \* from customers where city = 'London' or city = 'Madrid' or country = 'Brazil'
+
 - add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
+
+insert into customers (customername, contactname, address, city, postalcode, country) values ('The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 'Bag End', 111, 'Middle Earth')
+
 - update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
+
+update customers set postalcode = 11122 where contactname = 'Bilbo Baggins'
 
 **Clicking the `Restore Database` button in the page will repopulate the database with the original data and discard all changes you have made**.
 
@@ -44,7 +61,13 @@ Visit [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?
 The following exercises **require research**, the concepts needed to complete them have not been covered in class yet.
 
 - Find a query to discover how many different cities are stored in the Customers table. Repeats should not be double counted. Should be 69.
+
+SELECT count(distinct city) FROM Customers;
+
 - Find all suppliers who have names longer than 20 characters. Returns 11 records.
+
+SELECT \* from suppliers where LEN(SupplierName) > 20;
+
 - Add a `query string` option to your `GET /api/accounts` endpoint. The `query string` may contain `limit`, `sortby` and `sortdir` keys. If these keys are provided, use these values to limit and sort the `accounts` which are selected from the database. Reference the docs for sorting and limiting in `knex`.
 
 ```js
